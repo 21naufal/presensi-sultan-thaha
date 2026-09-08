@@ -1,29 +1,47 @@
+<table>
+<tr>
+<td width="50%" valign="top">
+
 # Presensi Sultan Thaha
 
-Sistem presensi karyawan berbasis web dengan verifikasi **Face Recognition** dan **validasi lokasi (GPS)**, dilengkapi manajemen jadwal, shift, unit kerja, dan rekap kehadiran untuk Admin maupun Pegawai.
+Sistem presensi karyawan berbasis web dengan verifikasi **Liveness Face Recognition** dan **Fake GPS Detection (validasi lokasi GPS)**, dilengkapi manajemen jadwal, shift, unit kerja, dan rekap kehadiran untuk Admin maupun Pegawai.
 
 **Fitur Utama**
-
-- Login dengan username/no. HP, lupa kata sandi via OTP email
 - Presensi dengan verifikasi wajah (face-api.js) + validasi lokasi GPS
 - Manajemen jadwal kerja per periode (bulan) per unit
 - Manajemen shift & pemetaan shift ke unit
 - Manajemen unit kerja
-- Manajemen data & profil pegawai (foto profil, ganti password)
 - Rekap & riwayat presensi (matrix per unit, detail per pegawai)
 - Log aktivitas/audit trail
 - Ekspor data presensi ke Excel & PDF
 
-**Teknologi**
+**Teknologi :** `React (Vite)` `TailwindCSS` `face-api.js` `Node.js` `Express.js` `MySQL`
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![MUI](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+---
+
+## Developer
+
+- **Naufal Septrio Akbar** — Fullstack Developer
+- **Asirman Jaya** — System Analyst & UI/UX Design
+
+</td>
+<td width="50%" valign="top">
+
+### 🎥 Demo Aplikasi
+
+<img width="662" height="327" alt="Image" src="https://github.com/user-attachments/assets/29a7da84-0807-49a6-b516-a7a869481c4e" />
+
+<img width="491" height="325" alt="Image" src="https://github.com/user-attachments/assets/a9641667-08f6-4c49-b3e9-f208d78ff0ff" />
+
+<img width="582" height="290" alt="Image" src="https://github.com/user-attachments/assets/5983675a-9892-4627-b690-bf1d8621edc5" />
+
+<img width="583" height="577" alt="Image" src="https://github.com/user-attachments/assets/adbeacfa-e1f7-4c66-a4ee-ac648cd4467b" />
+
+<img width="672" height="390" alt="Image" src="https://github.com/user-attachments/assets/a4d1a9ee-0619-499d-a1ec-7d9f9dfbc4b9" />
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -32,19 +50,19 @@ Sistem presensi karyawan berbasis web dengan verifikasi **Face Recognition** dan
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/<username-kamu>/presensi-sultan-thaha.git
+git clone https://github.com/21naufal/presensi-sultan-thaha.git
 cd presensi-sultan-thaha
 ```
 
 ### 2. Setup Database
 
-> ⚠️ Project ini belum menyertakan file skema database. Buat databasenya lebih dulu, lalu import `schema.sql` (export dari database lokal kamu) sebelum lanjut ke langkah berikut:
->
-> ```bash
-> mysqldump -u root -p --no-data nama_database_lokal_kamu > schema.sql
-> mysql -u root -p -e "CREATE DATABASE presensi_sultan_thaha"
-> mysql -u root -p presensi_sultan_thaha < schema.sql
-> ```
+Buat database MySQL dengan mengimpor `databasesistem.sql` yang ada di root project:
+
+```bash
+mysql -u root -p < databasesistem.sql
+```
+
+Perintah ini otomatis membuat seluruh tabel yang dibutuhkan (`users`, `pegawai`, `unit`, `shift`, `jadwal`, `presensi`, `data_wajah`, `lokasi`, `log`, dan lainnya).
 
 ### 3. Backend
 
@@ -62,7 +80,7 @@ Jalankan server:
 npm run dev
 ```
 
-Server berjalan di `http://localhost:5000`.
+Server akan berjalan di `http://localhost:5000`.
 
 ### 4. Buat Akun Admin Pertama
 
@@ -80,19 +98,18 @@ Salin hash yang dihasilkan, lalu insert manual ke tabel `users` di database (ses
 cd ../frontend
 npm install
 cp .env.example .env
+```
+
+Jalankan aplikasi:
+
+```bash
 npm run dev
 ```
 
-Frontend berjalan di `https://localhost:5173` (HTTPS lokal otomatis dari `vite-plugin-mkcert`, dibutuhkan agar browser mengizinkan akses kamera untuk fitur face recognition). Saat pertama kali dijalankan, browser mungkin meminta izin instalasi sertifikat lokal — terima saja agar HTTPS berjalan normal.
+Frontend akan berjalan di `https://localhost:5173` (HTTPS lokal otomatis dari `vite-plugin-mkcert`, dibutuhkan agar browser mengizinkan akses kamera untuk fitur face recognition). Saat pertama kali dijalankan, browser mungkin meminta izin instalasi sertifikat lokal — terima saja agar HTTPS berjalan normal.
 
 Izinkan akses **kamera** dan **lokasi** saat diminta browser agar fitur presensi wajah & validasi GPS berfungsi.
 
 ## Lisensi
 
 Proyek ini bebas digunakan untuk pembelajaran atau pengembangan lanjutan. Tidak untuk dikomersialisasikan tanpa izin.
-
-## Developer
-
-<!-- Lengkapi dengan nama kamu / tim pengembang -->
-
-**Naufal Septrio Akbar** — Fullstack Developer
