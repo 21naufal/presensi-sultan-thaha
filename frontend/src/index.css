@@ -1,0 +1,7 @@
+/* import Tailwind CSS */
+@import "tailwindcss";
+
+/* Font utama */
+@theme {
+  --font-sans: "Poppins", sans-serif;
+}
